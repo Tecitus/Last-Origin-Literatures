@@ -11,7 +11,7 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gec
 
 targetboard = "lastorigin"
 today = datetime.datetime.now()
-nextday = datetime.datetime(today.year,today.month,today.day,0,0,0) # + datetime.timedelta(days=1)
+nextday = datetime.datetime(today.year,today.month,today.day,0,0,0) + datetime.timedelta(days=1)
 
 #indfile = open('index.html','a')
 giturl = 'https://tecitus.github.io/Last-Origin-Literatures/html/'
