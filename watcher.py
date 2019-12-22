@@ -7,6 +7,7 @@ from time import sleep
 from retry import retry
 import subprocess
 from batchindexer import makeindex
+import urllib3
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0"}
 
 targetboard = "lastorigin"
@@ -31,7 +32,7 @@ def gitpush():
   nextday += datetime.timedelta(days=1)
   print('gitpushdone')
 
-@retry((requests.exceptions.ConnectionError,peewee.OperationalError),tries=4,delay=10)
+@retry((urllib3.exceptions.ReadTimeoutError,requests.exceptions.ConnectionError,peewee.OperationalError),tries=4,delay=10)
 def wrapper(doc):
     if not ((('단' in doc['title']) and ('편' in doc['title'])) or (('문' in doc['title']) and ('학' in doc['title'])) or ((('야' in doc['title']) or ('소' in doc['title'])) and ('설' in doc['title']))):
       return False
