@@ -12,7 +12,7 @@ targetboard = "lastorigin"
 
 
 
-@retry((urllib3.exceptions.ReadTimeoutError,requests.exceptions.ConnectionError,peewee.OperationalError),tries=5,delay=10)
+@retry((urllib3.exceptions.ReadTimeoutError,requests.exceptions.ConnectionError,peewee.OperationalError),tries=5,delay=60)
 def wrapper(doc):
   if not ((('단' in doc['title']) and ('편' in doc['title'])) or (('문' in doc['title']) and ('학' in doc['title'])) or ((('야' in doc['title']) or ('소' in doc['title'])) and ('설' in doc['title']))):
     return
