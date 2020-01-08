@@ -16,7 +16,8 @@ nextday = datetime.datetime(today.year,today.month,today.day,0,0,0) + datetime.t
 
 #indfile = open('index.html','a')
 giturl = 'https://tecitus.github.io/Last-Origin-Literatures/html/'
-@retry((requests.exceptions.ConnectionError,peewee.OperationalError),tries=5,delay=60)
+'''(requests.exceptions.ConnectionError,peewee.OperationalError)'''
+@retry(Exception,tries=99,delay=60)
 def gitpush():
   print('gitpush')
   global nextday
@@ -32,7 +33,8 @@ def gitpush():
   nextday += datetime.timedelta(days=1)
   print('gitpushdone')
 
-@retry((urllib3.exceptions.ReadTimeoutError,requests.exceptions.ConnectionError,peewee.OperationalError),tries=4,delay=60)
+'''(urllib3.exceptions.ReadTimeoutError,requests.exceptions.ConnectionError,peewee.OperationalError)'''
+@retry(Exception,tries=99,delay=60)
 def wrapper(doc):
     if not ((('단' in doc['title']) and ('편' in doc['title'])) or (('문' in doc['title']) and ('학' in doc['title'])) or ((('야' in doc['title']) or ('소' in doc['title'])) and ('설' in doc['title']))):
       return False
