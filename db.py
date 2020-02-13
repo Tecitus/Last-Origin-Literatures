@@ -1,6 +1,6 @@
 from peewee import *
 
-db = PostgresqlDatabase('lastorigin', user='lao', password='12345', host='172.30.1.19', port=5432)
+db = PostgresqlDatabase('lastorigin', user='lao', password='12345', host='172.30.1.23', port=5432)
 
 class BaseModel(Model):
   id = BigAutoField(primary_key=True,unique=True)
